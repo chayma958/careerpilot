@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./context/AuthContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AppRouter } from "./routes/AppRouter";
+import { ConfirmDialogProvider } from "./components/ConfirmDialog";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,7 +18,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <AuthProvider>
-          <AppRouter />
+          <ConfirmDialogProvider>
+            <AppRouter />
+          </ConfirmDialogProvider>
         </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>

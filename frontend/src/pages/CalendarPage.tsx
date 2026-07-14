@@ -8,11 +8,13 @@ import { InterviewFormModal } from "../components/InterviewFormModal";
 import type { InterviewFormValues } from "../components/InterviewFormModal";
 import { primaryButtonClass } from "../lib/ui";
 import { LoadingState } from "../components/LoadingState";
+import { useConfirm } from "../components/ConfirmDialog";
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export function CalendarPage() {
   const queryClient = useQueryClient();
+  const confirm = useConfirm();
   const today = useMemo(() => new Date(), []);
   const [viewDate, setViewDate] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
   const [selectedDate, setSelectedDate] = useState(today);
@@ -72,8 +74,8 @@ export function CalendarPage() {
     setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() + offset, 1));
   }
 
-  function handleDelete(id: string) {
-    if (window.confirm("Delete this interview?")) {
+  async function handleDelete(id: string) {
+    if (await confirm("Delete this interview?")) {
       deleteMutation.mutate(id);
     }
   }

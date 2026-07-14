@@ -3,64 +3,11 @@ import { useAuth } from "../context/AuthContext";
 import { NotificationBell } from "./NotificationBell";
 import { ThemeToggle } from "./ThemeToggle";
 import { LogoMark } from "./LogoMark";
-
-function DashboardIcon() {
-  return (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <rect x="3" y="3" width="8" height="8" rx="1.5" />
-      <rect x="13" y="3" width="8" height="8" rx="1.5" />
-      <rect x="3" y="13" width="8" height="8" rx="1.5" />
-      <rect x="13" y="13" width="8" height="8" rx="1.5" />
-    </svg>
-  );
-}
-
-function ApplicationsIcon() {
-  return (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <rect x="3" y="8" width="18" height="12" rx="2" />
-      <path d="M8 8V6a2 2 0 012-2h4a2 2 0 012 2v2" strokeLinecap="round" strokeLinejoin="round" />
-      <line x1="3" y1="13" x2="21" y2="13" />
-    </svg>
-  );
-}
-
-function KanbanIcon() {
-  return (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <rect x="3" y="4" width="5" height="16" rx="1" />
-      <rect x="9.5" y="4" width="5" height="10" rx="1" />
-      <rect x="16" y="4" width="5" height="13" rx="1" />
-    </svg>
-  );
-}
-
-function DocumentsIcon() {
-  return (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path
-        d="M6 2h9l5 5v13a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2z"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M15 2v5h5" strokeLinecap="round" strokeLinejoin="round" />
-      <line x1="8" y1="13" x2="16" y2="13" />
-      <line x1="8" y1="17" x2="13" y2="17" />
-    </svg>
-  );
-}
-
-function CalendarIcon() {
-  return (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0V11.25a2.25 2.25 0 012.25-2.25h13.5a2.25 2.25 0 012.25 2.25v7.5"
-      />
-    </svg>
-  );
-}
+import { ApplicationsIcon } from "./icons/ApplicationsIcon";
+import { DashboardIcon } from "./icons/DashboardIcon";
+import { KanbanIcon } from "./icons/KanbanIcon";
+import { DocumentsIcon } from "./icons/DocumentsIcon";
+import { CalendarIcon } from "./icons/CalendarIcon";
 
 const navItems = [
   { to: "/", label: "Dashboard", Icon: DashboardIcon },

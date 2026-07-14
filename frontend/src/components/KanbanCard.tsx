@@ -3,39 +3,12 @@ import { CSS } from "@dnd-kit/utilities";
 import type { Application } from "../types";
 import { STATUS_COLORS, STATUS_COLORS_DARK } from "../lib/statusColors";
 import { useTheme } from "../context/ThemeContext";
+import { LocationIcon } from "./icons/LocationIcon";
+import { SalaryIcon } from "./icons/SalaryIcon";
 
 interface KanbanCardProps {
   application: Application;
   onClick: () => void;
-}
-
-function LocationIcon() {
-  return (
-    <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-      />
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-      />
-    </svg>
-  );
-}
-
-function SalaryIcon() {
-  return (
-    <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 6v12m3-8.25c0-1.243-1.343-2.25-3-2.25s-3 1.007-3 2.25 1.343 2.25 3 2.25 3 1.007 3 2.25-1.343 2.25-3 2.25-3-1.007-3-2.25"
-      />
-    </svg>
-  );
 }
 
 export function KanbanCard({ application, onClick }: KanbanCardProps) {

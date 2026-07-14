@@ -10,6 +10,8 @@ import { ApplicationPreviewModal } from "../components/ApplicationPreviewModal";
 import { primaryButtonClass } from "../lib/ui";
 import { LoadingState } from "../components/LoadingState";
 import { EmptyState } from "../components/EmptyState";
+import { ApplicationsIcon } from "../components/icons/ApplicationsIcon";
+import { useConfirm } from "../components/ConfirmDialog";
 
 function toApiPayload(values: ApplicationFormValues) {
   return {
@@ -59,8 +61,10 @@ export function ApplicationsPage() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["applications"] }),
   });
 
-  function handleDelete(id: string) {
-    if (window.confirm("Delete this application?")) {
+  const confirm = useConfirm();
+
+  async function handleDelete(id: string) {
+    if (await confirm("Delete this application?")) {
       deleteMutation.mutate(id);
     }
   }
@@ -116,19 +120,10 @@ export function ApplicationsPage() {
         </p>
       )}
 
-      {isLoading && <LoadingState />}
+      {isLoading && <LoadingState centered />}
 
       {!isLoading && applications && applications.length === 0 && (
-        <EmptyState
-          icon={
-            <svg className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M20.25 14.15v4.098a2.25 2.25 0 01-2.25 2.25h-12a2.25 2.25 0 01-2.25-2.25v-4.098M20.25 14.15L15 10.5m5.25 3.65l-5.7 3.5a2.25 2.25 0 01-2.4 0l-5.7-3.5m14.85 0V8.85a2.25 2.25 0 00-1.05-1.9l-6-3.75a2.25 2.25 0 00-2.4 0l-6 3.75a2.25 2.25 0 00-1.05 1.9v5.3"
-              />
-            </svg>
-          }
+        <EmptyState icon={<ApplicationsIcon className="h-10 w-10" />}
           title={
             hasActiveFilters ? "No applications match your filters." : "No applications yet — add your first one to start tracking."
           }

@@ -6,9 +6,11 @@ import type { Document, DocumentType } from "../types";
 import { DOCUMENT_TYPE_LABELS, DOCUMENT_TYPE_ORDER } from "../lib/documentTypes";
 import { CvAnalysisModal } from "../components/CvAnalysisModal";
 import { LoadingState } from "../components/LoadingState";
+import { useConfirm } from "../components/ConfirmDialog";
 
 export function DocumentsPage() {
   const queryClient = useQueryClient();
+  const confirm = useConfirm();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [type, setType] = useState<DocumentType>("CV");
   const [analyzingDoc, setAnalyzingDoc] = useState<Document | null>(null);
@@ -41,8 +43,8 @@ export function DocumentsPage() {
     }
   }
 
-  function handleDelete(id: string) {
-    if (window.confirm("Delete this document?")) {
+  async function handleDelete(id: string) {
+    if (await confirm("Delete this document?")) {
       deleteMutation.mutate(id);
     }
   }

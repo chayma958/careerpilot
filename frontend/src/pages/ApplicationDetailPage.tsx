@@ -27,6 +27,7 @@ import type { ApplicationFormValues } from "../components/ApplicationFormModal";
 import { CvAnalysisModal } from "../components/CvAnalysisModal";
 import { Spinner } from "../components/Spinner";
 import { LoadingState } from "../components/LoadingState";
+import { useConfirm } from "../components/ConfirmDialog";
 import {
   cardClass,
   dangerButtonClass,
@@ -149,8 +150,10 @@ export function ApplicationDetailPage() {
     }
   }
 
-  function handleDeleteApplication() {
-    if (window.confirm("Delete this application? This cannot be undone.")) {
+  const confirm = useConfirm();
+
+  async function handleDeleteApplication() {
+    if (await confirm("Delete this application? This cannot be undone.")) {
       deleteMutation.mutate();
     }
   }
@@ -198,7 +201,7 @@ export function ApplicationDetailPage() {
   if (isLoading) {
     return (
       <div className="p-8">
-        <LoadingState />
+        <LoadingState centered />
       </div>
     );
   }
