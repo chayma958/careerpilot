@@ -27,6 +27,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .finally(() => setLoading(false));
   }, []);
 
+  useEffect(() => {
+    function handleStorage(e: StorageEvent) {
+      if (e.key !== "token") return;
+      if (!e.newValue) {
+        setUser(null);
+        return;
+      }
+      fetchMe()
+        .then(setUser)
+        .catch(() => localStorage.removeItem("token"));
+    }
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
+  }, []);
+
   function setSession(token: string, user: User) {
     localStorage.setItem("token", token);
     setUser(user);

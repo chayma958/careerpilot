@@ -1,6 +1,6 @@
 import { type SubmitEvent, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import { isAxiosError } from "axios";
 import { login, resendVerification } from "../api/auth";
 import { useAuth } from "../context/AuthContext";
@@ -17,7 +17,7 @@ export function LoginPage() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
-  const { setSession } = useAuth();
+  const { user, setSession } = useAuth();
   const [searchParams] = useSearchParams();
   const oauthFailed = searchParams.get("error") === "oauth_failed";
 
@@ -42,6 +42,10 @@ export function LoginPage() {
     ? (mutation.error.response?.data as { error?: string; code?: string } | undefined)
     : undefined;
   const isUnverified = errorData?.code === "EMAIL_NOT_VERIFIED";
+
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <AuthLayout title="Log in to CareerPilot">
