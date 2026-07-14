@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-brand: "Space Grotesk", ui-sans-serif, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+html,
+body,
+#root {
+  background-color: #f9fafb;
+}
+
+html.dark,
+html.dark body,
+html.dark #root {
+  background-color: #030712;
+}
+
+button:not(:disabled),
+a,
+[role="button"],
+select,
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out;
+}
