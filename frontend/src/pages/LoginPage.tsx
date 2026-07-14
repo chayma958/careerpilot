@@ -9,8 +9,8 @@ import { Spinner } from "../components/Spinner";
 import { primaryButtonClass } from "../lib/ui";
 import { AuthLayout } from "../components/AuthLayout";
 
-const DEMO_EMAIL = import.meta.env.VITE_DEMO_EMAIL ?? "demo@careerpilot.dev";
-const DEMO_PASSWORD = import.meta.env.VITE_DEMO_PASSWORD ?? "Demo1234!";
+const DEMO_EMAIL = import.meta.env.VITE_DEMO_EMAIL || "demo@careerpilot.dev";
+const DEMO_PASSWORD = import.meta.env.VITE_DEMO_PASSWORD || "Demo1234!";
 
 export function LoginPage() {
   const [email, setEmail] = useState("");
