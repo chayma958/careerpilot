@@ -1,11 +1,18 @@
 import OpenAI from "openai";
 
-const openrouter = new OpenAI({
-  apiKey: process.env.OPENROUTER_API_KEY,
-  baseURL: "https://openrouter.ai/api/v1",
-  timeout: 45 * 1000,
-  maxRetries: 1,
-});
+let client: OpenAI | null = null;
+
+function getClient(): OpenAI {
+  if (!client) {
+    client = new OpenAI({
+      apiKey: process.env.OPENROUTER_API_KEY,
+      baseURL: "https://openrouter.ai/api/v1",
+      timeout: 45 * 1000,
+      maxRetries: 1,
+    });
+  }
+  return client;
+}
 
 const MODEL = "nvidia/nemotron-nano-9b-v2:free";
 
@@ -22,7 +29,7 @@ function isRateLimitError(err: unknown): boolean {
 
 async function createCompletion(params: OpenAI.Chat.ChatCompletionCreateParamsNonStreaming) {
   try {
-    return await openrouter.chat.completions.create(params);
+    return await getClient().chat.completions.create(params);
   } catch (err) {
     if (isRateLimitError(err)) throw new AiRateLimitError();
     throw err;
