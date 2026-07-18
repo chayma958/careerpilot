@@ -4,7 +4,7 @@ A job application tracker for people running a serious job search: track every a
 pipeline, keep interviews on a calendar, store your CVs and cover letters, and use AI to analyze your resume
 against a role, tailor it, draft a cover letter, and generate mock interview questions.
 
-**Live demo:** [your-vercel-url] — log in with the demo account shown on the login page (no signup required).
+**Live demo:** https://careerpilot-omega-ecru.vercel.app/ — log in with the demo account shown on the login page (no signup required).
 
 ## Features
 
